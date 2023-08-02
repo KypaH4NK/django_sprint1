@@ -1,24 +1,16 @@
 {% extends "base.html" %}
 {% block title %}
-  {{ post.location}}. {{post.date}}
+  {{ post.location }}. {{ post.date }}
 {% endblock %}
 {% block content %}
-  <div class="container py-5">
+  {% with request.resolver_match.view_name as view_name %}
     <article>
-      <ul>
-        <li>
-            Место: {{ post.location }}
-        </li>
-        <li>
-          Дата: {{ post.date }}
-        </li>
-        <li>  
-          Категория: <a href = "{{ post.category }}">{{ post.category }}</a>
-        </li>
-      </ul>        
+        {% if view_name  == 'blog:post_detail' %}
+          {% include "includes/post.html" %}
+        {% endif %}        
       <p>
-        {{post.text}}
+        {{ post.text }}
       </p>          
-    </article>                
-  </div>
+    </article>
+  {% endwith %}                 
 {% endblock %}

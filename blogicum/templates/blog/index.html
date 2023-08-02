@@ -3,27 +3,20 @@
   Лента записей
 {% endblock %}
 {% block content %}
-  <div class="container py-5">
+  {% with request.resolver_match.view_name as view_name %}
     <h1>Лента записей</h1>                        
     <hr>
     <article>
-      {% for post in posts reversed%}
-      <ul>
-        <li>
-          Место: {{ post.location }}
-        </li>
-        <li>
-          Дата: {{ post.date }}
-        </li>
-        <li>  
-          Категория: <a href = "{{ post.category }}">{{ post.category }}</a>
-        </li>
-      </ul>          
+      {% for post in posts %}
+        {% if view_name  == 'blog:index' %}
+          {% include "includes/post.html" %}
+        {% endif %} 
       <p>
-        {{ post.text }}||truncatewords:10
+        {{ post.text|truncatewords:10 }}
       </p>
       <a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
       <hr>
       {% endfor %}
     </article>
+  {% endwith %} 
 {% endblock %}
