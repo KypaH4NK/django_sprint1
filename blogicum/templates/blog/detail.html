@@ -3,14 +3,5 @@
   {{ post.location }}. {{ post.date }}
 {% endblock %}
 {% block content %}
-  {% with request.resolver_match.view_name as view_name %}
-    <article>
-        {% if view_name  == 'blog:post_detail' %}
-          {% include "includes/post.html" %}
-        {% endif %}        
-      <p>
-        {{ post.text }}
-      </p>          
-    </article>
-  {% endwith %}                 
+{% include "includes/post.html" %}              
 {% endblock %}
