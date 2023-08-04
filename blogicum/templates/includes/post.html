@@ -7,7 +7,7 @@
     Дата: {{ post.date }}
     </li>
     <li>  
-    Категория: <a href = "{% url 'blog:category_slug' post.category %}">{{ post.category }}</a>
+    Категория: <a href = "{% url 'blog:category_posts' post.category %}">{{ post.category }}</a>
     </li>
   </ul>
   {% with request.resolver_match.view_name as view_name %}
